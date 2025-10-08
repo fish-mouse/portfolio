@@ -8,13 +8,13 @@ body {
   padding: 1rem;
 }
 
-ul {
+/* ul {
   display: contents;
 }
 
 li {
   display: contents;
-}
+} */
 
 nav {
   display: flex;
@@ -22,6 +22,10 @@ nav {
   border-bottom-style: solid;
   border-bottom-color: oklch(80% 3% 200);
   margin-bottom: 1rem; /* optional, per the step instructions */
+}
+
+nav ul, nav li {
+  display: contents;
 }
 
 nav a {
@@ -90,6 +94,54 @@ h1 {
 h2, h3, h4, h5, h6 {
   line-height: 1.1;
   text-wrap: balance;
+}
+
+p ul {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
+}
+
+.ResumeContacts {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.elementCol {
+  display: flex;
+}
+
+.element {
+  margin: 0px 50px 0px 0px;
+}
+
+
+.skillSet {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.set {
+  display: flex;
+  margin: 0px 100px 0px 0px;
+}
+
+.JobLocationAndDates, .AwardTitleAndDates, .PublicationTitleAndDates, .Institution {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.Location{
+  text-align: left;
+}
+
+.Dates{
+  text-align: right;
 }
 
 /* 

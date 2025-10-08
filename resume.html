@@ -16,8 +16,27 @@
             <li><a href="resume.html" class="current">Resume</a></li>
         </ul>                
     </nav>
-    <h1>Ricky Zhang</h1>
-    <p>Holy City of Raie, Catalina |  <a href="https://github.com/fish-mouse">GitHub</a>  |  chengruizhang@gowl.com  |   (626) 353-1817</p>
+    <h1 id="ResumeHeading1">Ricky Zhang</h1>
+    <!-- <p>Holy City of Raie, Catalina |  <a href="https://github.com/fish-mouse">GitHub</a>  |  chengruizhang@gowl.com  |   (626) 353-1817</p> -->
+
+    <div class="ResumeContacts">
+        <div class="elementCol">
+            <div class = "element">
+                <p>Holy City of Raie, Catalina</p>
+            </div>
+        </div>
+        <div class="elementCol">
+            <div class = "element">
+                <p>chengruizhang@gowl.com</p>
+            </div>
+        </div>
+        <div class="elementCol">
+            <div class = "element">
+                <p>(626) 353-1817</p>
+            </div>
+        </div>
+    </div>
+
     <section>
         <h2>Objective</h2>
         <hr>
@@ -27,36 +46,70 @@
     <section>
         <h2>Special Skills</h2>
         <hr>
-        <ul>
-            <li>Silent Spell Cast</li>
-            <li>Divine Class Mastery of Barrier Magic</li>
-            <li>C2 Level Demon Tongue (CEFR scale)</li>
-            <li>High Speed Spell Decipher</li>
-            <li>Complete Presence Erasure</li>
-            <li>Mastery in Wyvern Aeronautic Operation</li>
-        </ul>
+        <div class="skillSet">
+            <div class="set">
+                <ul>
+                    <li>Silent Spell Cast</li>
+                    <li>Divine Class Mastery of Barrier Magic</li>
+                    <li>C2 Level Demon Tongue (CEFR scale)</li>
+                </ul>
+            </div>
+            <div class="set">
+                <ul>
+                    <li>High Speed Spell Decipher</li>
+                    <li>Complete Presence Erasure</li>
+                    <li>Mastery in Wyvern Aeronautic Operation</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
     <section>
         <h2>Job History</h2>
         <hr>    
         <article>
-            <h3>Royal Court of Catalina <time datetime = "2014-01">January 2014</time> - <time datetime="2016-05">May 2016</time></h3>
-            <p><em>Field Intelligence Officer of Catalina Central Intelligence Bureau</em></p>
-            <ul>
-                <li>Decreased the mortality rate of field agents and key witnesses by 45%</li>
-                <li>Increased success of covert operations in demon land by 55%</li>
-                <li>Increased Intelligence Bureau's Wyvern Aeronautic Operation literacy by 35%</li>
-            </ul>
+            <div class="Job">
+                <div class="JobLocationAndDates">
+                    <div class="Location">
+                        <h3>Royal Court of Catalina</h3>
+                    </div>
+                    <div class="Dates">
+                        <time datetime = "2014-01">January 2014</time> - <time datetime="2016-05">May 2016</time>
+                    </div>
+                </div> 
+                <div class="JobTitle">
+                    <em>Field Intelligence Officer of Catalina Central Intelligence Bureau</em>
+                </div>
+                <div class="JobDetails">
+                    <ul>
+                        <li>Decreased the mortality rate of field agents and key witnesses by 45%.</li>
+                        <li>Increased success of covert operations in demon land by 55%.</li>
+                        <li>Increased Intelligence Bureau's Wyvern Aeronautic Operation literacy by 35%.</li>
+                    </ul>
+                </div>
+            </div>
         </article>
         <article>
-            <h3>University of Catalina, Brookhaven <time datetime = "2016-06">June 2016</time> - <time datetime="2025-12">December 2025</time></h3>
-            <p><em>Lecturer in MGL 196: Advance Demon Spell Cryptology</em></p>
-            <ul>
-                <li>Reduced department’s spending on magical tools by 40%.</li>
-                <li>Increased the scores of representing mages in Middle Realm Sorcery Olympia by 60%.</li>
-                <li>Increased student-led research on Demon Spell Cryptology by 36%.</li>
-            </ul>
+            <div class="Job">
+                <div class="JobLocationAndDates">
+                    <div class="Location">
+                        <h3>University of Catalina, Brookhaven</h3>
+                    </div>
+                    <div class="Dates">
+                        <time datetime = "2016-06">June 2016</time> - <time datetime="2025-12">December 2025</time>
+                    </div>
+                </div> 
+                <div class="Title">
+                    <em>Lecturer in MGL 196: Advance Demon Spell Cryptology</em>
+                </div>
+                <div class="Details">
+                    <ul>
+                        <li>Reduced department’s spending on magical tools by 40%.</li>
+                        <li>Increased the scores of representing mages in Middle Realm Sorcery Olympia by 60%.</li>
+                        <li>Increased student-led research on Demon Spell Cryptology by 36%.</li>
+                    </ul>
+                </div>
+            </div>
         </article>
 
     </section>
@@ -65,33 +118,73 @@
         <h2>Award / Publication</h2>
         <hr>
         <article>
-            <h3>Catalina Citizen Peace Prize <time datetime="2024-01">January 2024</time></h3>
-            <p><em>Awarded by Catalina Citizen Honorary Committee for saving countless lives in the recent demon conflict.</em></p>
+            <div class="Award">
+                <div class="AwardTitleAndDates">
+                    <div class="Title">
+                        <h3>Catalina Citizen Peace Prize</h3>
+                    </div>
+                    <div class="Dates">
+                        <time datetime="2024-01">January 2024</time>
+                    </div>
+                </div>
+                <div class="Details">
+                    <em>Awarded by Catalina Citizen Honorary Committee for saving countless lives in the recent demon conflict.</em>
+                </div>
+            </div>
         </article>
-        <br>
         <article>
-            <h3>Zhang, R. Deciphering Zoltraak, the Demon Instant Kill Spell. Haven Press <time datetime = "2024-01">January 2024</time></h3>
-            <p><em>To Middle Realm Magic Science Association.</em></p>
+            <div class="Publication">
+                <div class="PublicationTitleAndDates">
+                    <div class="Title">
+                        <h3>Zhang, R. Deciphering Zoltraak, the Demon Instant Kill Spell. Haven Press</h3>
+                    </div>
+                    <div class="Dates">
+                        <time datetime = "2024-01">January 2024</time>
+                    </div>
+                </div>
+                <div class="Details">
+                    <em>To Middle Realm Magic Science Association.</em>
+                </div>
+            </div>
         </article>
-
-        <br>
         <article>
-            <h3>Zhang, R. A Brief History on the Flamme’s Demon-Warding Barrier. Raie Press <time datetime = "2020-01">January 2020</time></h3>
-            <p><em>To Middle Realm Magic Science Association.</em></p>
+            <div class="Publication">
+                <div class="PublicationTitleAndDates">
+                    <div class="Title">
+                        <h3>Zhang, R. A Brief History on the Flamme’s Demon-Warding Barrier. Raie Press</h3>
+                    </div>
+                    <div class="Dates">
+                        <time datetime = "2020-01">January 2020</time>
+                    </div>
+                </div>
+                <div class="Details">
+                    <em>To Middle Realm Magic Science Association.</em>
+                </div>
+            </div>
         </article>
     </section>
 
     <section>
         <h2>Education</h2>
         <hr>
-        <h3>Saint of Philosophy, Spell Cryptology and Fundamental Magic Theory</h3>
-        <p>
-            University of Catalina, Brookhaven <time datetime="2018-09">August 2018</time> - <time datetime="2020-06">June 2020</time>
-        </p>
-        <h3>Bachelors of Selena, Barrier Magic Construction</h3>
-        <p>
-            Catalina State University, Raie <time datetime="2020-09">September 2020</time> - <time datetime="2024-06">June 2024</time>
-        </p>
+        <div class="InstitutionDetail">
+            <div class="Degree">
+                <h3>Saint of Philosophy, Spell Cryptology and Fundamental Magic Theory</h3>
+            </div> 
+            <div class="Institution">
+                <div school="Name">University of Catalina, Brookhaven</div>
+                <div class="Dates"><time datetime="2018-09">August 2018</time> - <time datetime="2020-06">June 2020</time></div>
+            </div> 
+        </div>
+        <div class="InstitutionDetail">
+            <div class="Degree">
+                <h3>Bachelors of Selena, Barrier Magic Construction</h3>
+            </div> 
+            <div class="Institution">
+                <div school="Name">Catalina State University, Raie</div>
+                <div class="Dates"><time datetime="2020-09">September 2020</time> - <time datetime="2024-06">June 2024</time></div>
+            </div> 
+        </div>
     </section>
 
 </body>
