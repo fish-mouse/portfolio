@@ -1,27 +1,15 @@
 body {
-  /* Set line height to 1.5 times the font size
-	   and use the OS’s UI font as the website font
-	 */
   font: 100%/1.5 system-ui;
   max-width: 105ch;
-  margin: auto;
-  padding: 1rem;
+  margin-inline: auto;
+  padding: 2rem;
 }
-
-/* ul {
-  display: contents;
-}
-
-li {
-  display: contents;
-} */
-
 nav {
   display: flex;
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: oklch(80% 3% 200);
-  margin-bottom: 1rem; /* optional, per the step instructions */
+  margin-bottom: 1rem;
 }
 
 nav ul, nav li {
@@ -61,6 +49,10 @@ form {
   gap: 1em;
 }
 
+input, textarea, button {
+  font: inherit;
+}
+
 label {
   display: grid;
   grid-template-columns: subgrid;
@@ -91,7 +83,7 @@ h1 {
   font-size: 400%;
 }
 
-h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
   text-wrap: balance;
 }
@@ -143,18 +135,3 @@ p ul {
 .Dates{
   text-align: right;
 }
-
-/* 
-input, textarea, button {
-  font: inherit;
-}
-
-form, label, textarea, button, input {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-} */
-
-/* label {
-  margin-block: 1rem;
-} */
