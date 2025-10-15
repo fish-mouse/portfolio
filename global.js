@@ -36,10 +36,6 @@ for (let p of pages) {
   a.href = url;
   a.textContent = title;
 
-  console.log("a.host: ", a.host);
-  console.log("location.host: ", location.host);
-  console.log("a.pathname: ", a.pathname);
-  console.log("location.pathname: ", location.pathname);
   if (a.host === location.host && a.pathname === location.pathname) {
     a.classList.add('current');
   }
@@ -53,6 +49,36 @@ for (let p of pages) {
   }
 
   nav.append(a);
-}
+};
+
+document.body.insertAdjacentHTML(
+  'afterbegin',
+  `
+	<label class="color-scheme">
+		Theme:
+		<select>
+      <option value="automatic">Automatic</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+		</select>
+	</label>`
+);
+
+const select = document.querySelector('select');
+
+window.addEventListener('load', () => {
+  const colorScheme = document.getElementById('myElement');
+  if (localStorage.colorScheme !== null) {
+    select.value = localStorage.getItem('colorScheme');
+    document.documentElement.style.setProperty('color-scheme', localStorage.colorScheme);
+  }
+});
 
 
+select.addEventListener('input', function (event) {
+  console.log('color scheme changed to', event.target.value);
+  document.documentElement.style.setProperty('color-scheme', event.target.value);
+
+  localStorage.colorScheme = event.target.value;
+
+});

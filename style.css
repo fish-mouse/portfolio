@@ -49,7 +49,7 @@ form {
   gap: 1em;
 }
 
-input, textarea, button {
+input, textarea, button, select {
   font: inherit;
 }
 
@@ -145,6 +145,9 @@ nav {
   border-bottom-color: var(--border-color);
 }
 
-label .color-scheme {
+label.color-scheme {
   position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 80%;
 }
