@@ -57,7 +57,7 @@ document.body.insertAdjacentHTML(
 	<label class="color-scheme">
 		Theme:
 		<select>
-      <option value="automatic">Automatic</option>
+      <option value="light dark" selected>Automatic</option>
       <option value="light">Light</option>
       <option value="dark">Dark</option>
 		</select>
@@ -66,13 +66,10 @@ document.body.insertAdjacentHTML(
 
 const select = document.querySelector('select');
 
-window.addEventListener('load', () => {
-
-  if (localStorage.colorScheme !== null) {
-    select.value = localStorage.getItem('colorScheme');
-    document.documentElement.style.setProperty('color-scheme', localStorage.colorScheme);
-  }
-});
+if (localStorage.colorScheme) {
+  select.value = localStorage.colorScheme;
+  document.documentElement.style.setProperty('color-scheme', localStorage.colorScheme);
+}
 
 
 select.addEventListener('input', function (event) {
