@@ -22,15 +22,17 @@ let pages = [
 let nav = document.createElement('nav');
 document.body.prepend(nav);
 
+const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+  ? "/"                  // Local server
+  : "/portfolio/";         // GitHub Pages repo name
+
 for (let p of pages) {
   let url = p.url;
   let title = p.title;
-  nav.insertAdjacentHTML('beforeend', `<a href="${url}">${title}</a>`);
+
+  url = !url.startsWith('http') ? BASE_PATH + url : url;
+
+  nav.insertAdjacentHTML("beforeend", `<a href="${url}">${title}</a>`);
 }
 
-const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
-  ? "/"                  // Local server
-  : "/fish-mouse.github.io/portfolio/";         // GitHub Pages repo name
-
-url = !url.startsWith('http') ? BASE_PATH + url : url;
 
