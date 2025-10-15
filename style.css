@@ -146,6 +146,7 @@ nav {
 }
 
 label.color-scheme {
+  display: block;
   position: absolute;
   top: 1rem;
   right: 1rem;
