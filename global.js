@@ -30,7 +30,7 @@ for (let p of pages) {
   let url = p.url;
   let title = p.title;
 
-  url = !url.startsWith('fish') ? BASE_PATH + url : url;
+  url = !url.startsWith('http') ? BASE_PATH + url : url;
 
   let a = document.createElement('a');
   a.href = url;
