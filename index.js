@@ -9,7 +9,11 @@ renderProjects(latestProjects, projectsContainer, 'h2');
 
 const githubData = await fetchGitHubData('fish-mouse');
 
+console.log('GitHub Data:', githubData);
+
 const profileStats = document.querySelector('#profile-stats');
+
+console.log('profileStats:', profileStats);
 
 if(profileStats){
     profileStats.innerHTML = `
