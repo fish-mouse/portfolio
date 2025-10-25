@@ -152,3 +152,22 @@ label.color-scheme {
   right: 1rem;
   font-size: 80%;
 }
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+dt {
+  font-style: italic;
+  color: oklch(60% 10% 220);
+  grid-row: 1;
+}
+
+dd {
+  text-align: left;
+  font-weight: bold;
+  font-size: 200%;
+  grid-row: 2;
+  margin-left: 0
+}

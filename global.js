@@ -103,7 +103,6 @@ export async function fetchJSON(url) {
 }
 
 export function renderProjects(projects, containerElement, headingLevel = 'h2') {
-  // Your code will go here
   containerElement.innerHTML = '';
   for(let i = 0; i < projects.length; i++) {
     let project = projects[i];
@@ -122,4 +121,6 @@ export function renderProjCount(count, containerElement) {
   containerElement.innerHTML = ` ${count} ` + containerElement.innerHTML;
 }
 
-// console.log(fetchJSON('../lib/projects.json').data)
+export async function fetchGitHubData(username) {
+  return fetchJSON(`https://api.github.com/users/${username}`);
+}
