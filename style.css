@@ -175,15 +175,13 @@ dd {
 .container {
   display: flex;
   align-items: center;
-  gap: 2em;
-  flex-wrap: nowrap;
+  gap: 1.5em;
 }
 
 #projects-pie-plot {
   max-width: 20em;
+  min-width: 5em;
   margin-block: 2em;
-  width: 100%;
-  height: auto;
   aspect-ratio: 1 / 1;
 
   overflow: visible;
@@ -195,21 +193,33 @@ dd {
   gap: 0.5em;
   flex: 1;
   border: 1px solid #ddd;
+  border-radius: 0.5em;
   padding: 1em;
-  margin: 5px 10px 15px 20px;
+  margin: 5px 5px;
 }
 
 .legend li {
   display: flex;
   align-items: center;
   gap: 0.5em;
-  margin: 0px 30px
+  margin: 5px 5px
 }
 
 span.swatch {
   display: inline-block;
   width: 1em;
+  height: 1em;
   aspect-ratio: 1 / 1;
   background-color: var(--color);
   border-radius: 50%;
+}
+
+.searchBar {
+  width: 100%;
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+  margin-bottom: 1em;
+  font: inherit;
 }
