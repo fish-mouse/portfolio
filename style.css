@@ -171,3 +171,45 @@ dd {
   grid-row: 2;
   margin-left: 0
 }
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  flex-wrap: nowrap;
+}
+
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+
+  overflow: visible;
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 0.5em;
+  flex: 1;
+  border: 1px solid #ddd;
+  padding: 1em;
+  margin: 5px 10px 15px 20px;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin: 0px 30px
+}
+
+span.swatch {
+  display: inline-block;
+  width: 1em;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color);
+  border-radius: 50%;
+}
