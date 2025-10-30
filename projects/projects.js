@@ -15,6 +15,9 @@ let selectedIndex = -1;
 let selectedYear = null;
 
 function renderPieChart(projectsGiven) {
+  selectedIndex = -1;
+  selectedYear = null;
+
   let newSVG = d3.select('svg');
   newSVG.selectAll('path').remove();
 
@@ -108,3 +111,5 @@ searchInput.addEventListener('change', (event) => {
     renderPieChart(projects);
   }
 });
+
+console.log(selectedYear); // or any variable
