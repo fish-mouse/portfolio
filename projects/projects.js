@@ -11,7 +11,8 @@ const projTitleContainer = document.querySelector('.projects-title');
 
 renderProjCount(projects.length, projTitleContainer);
 
-
+let selectedIndex = -1;
+let selectedYear = null;
 
 function renderPieChart(projectsGiven) {
   let newSVG = d3.select('svg');
@@ -53,9 +54,38 @@ function renderPieChart(projectsGiven) {
       .attr('style', `--color:${colors(idx)}`) // set the style attribute while passing in parameters
       .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); // set the inner html of <li>
   });
+
+  let svg = d3.select('svg');
+
+  svg.selectAll('path').remove();
+  newArcs.forEach((arc, i) => {
+    svg
+      .append('path')
+      .attr('d', arc)
+      .attr('fill', colors(i))
+      .on('click', () => {
+        selectedIndex = selectedIndex === i ? -1 : i;
+        selectedYear = selectedIndex === -1 ? null : newData[i].label;
+
+        svg.selectAll('path').attr('class', (_, idx) => (
+          idx === selectedIndex ? 'selected' : null
+        ));
+        legend.selectAll('li').attr('class', (_, idx) => (
+          idx === selectedIndex ? 'selected' : null
+        ));
+
+        if (selectedYear){
+          renderProjects(projects.filter(p => p.year === selectedYear), projectsContainer, 'h2');
+        }
+        else{
+          renderProjects(projects, projectsContainer, 'h2');
+        }
+      });
+  });
+  return selectedYear;
 };
 
-renderPieChart(projects);
+selectedYear = renderPieChart(projects);
 
 let query = '';
 let searchInput = document.querySelector('.searchBar');
@@ -63,7 +93,9 @@ searchInput.addEventListener('input', (event) => {
   query = event.target.value;
   let filteredProjects = projects.filter((project) =>{
       let values = Object.values(project).join('\n').toLowerCase();
-      return values.includes(query.toLowerCase());
+      let matchesSearch = values.includes(query.toLowerCase())
+      let matchesYear = selectedYear === null || project.year === selectedYear;
+      return matchesSearch && matchesYear;
     }
   );
 
