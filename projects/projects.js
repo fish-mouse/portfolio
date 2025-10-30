@@ -2,6 +2,7 @@ import {fetchJSON, renderProjects, renderProjCount} from '../global.js';
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 
 let projects = await fetchJSON('../lib/projects.json');
+let activeProjects = projects.slice()
 
 const projectsContainer = document.querySelector('.projects');
 
@@ -15,8 +16,8 @@ let selectedIndex = -1;
 let selectedYear = null;
 
 function renderPieChart(projectsGiven) {
-  selectedIndex = -1;
-  selectedYear = null;
+  // selectedIndex = -1;
+  // selectedYear = null;
 
   let newSVG = d3.select('svg');
   newSVG.selectAll('path').remove();
@@ -77,12 +78,8 @@ function renderPieChart(projectsGiven) {
           idx === selectedIndex ? 'selected' : null
         ));
 
-        if (selectedYear){
-          renderProjects(projects.filter(p => p.year === selectedYear), projectsContainer, 'h2');
-        }
-        else{
-          renderProjects(projects, projectsContainer, 'h2');
-        }
+        let filtered = activeProjects.filter(p => selectedYear ? p.year === selectedYear : true);
+        renderProjects(filtered, projectsContainer, 'h2');
       });
   });
   return selectedYear;
@@ -95,21 +92,22 @@ let searchInput = document.querySelector('.searchBar');
 searchInput.addEventListener('change', (event) => {
   query = event.target.value;
   if (query.length > 0){
-      let filteredProjects = projects.filter((project) =>{
+      activeProjects = projects.filter((project) =>{
         let values = Object.values(project).join('\n').toLowerCase();
         let matchesSearch = values.includes(query.toLowerCase())
         let matchesYear = selectedYear === null || project.year === selectedYear;
         return matchesSearch && matchesYear;
       }
     );
-
-    renderProjects(filteredProjects, projectsContainer, 'h2');
-    renderPieChart(filteredProjects);
+    renderProjects(activeProjects, projectsContainer, 'h2');
+    // renderPieChart(activeProjects);
   }
   else {
+    // query = '';
+    // selectedYear = null;
+    activeProjects = projects.slice()
     renderProjects(projects, projectsContainer, 'h2');
     renderPieChart(projects);
   }
 });
 
-console.log(selectedYear); // or any variable
