@@ -16,8 +16,6 @@ let selectedIndex = -1;
 let selectedYear = null;
 
 function renderPieChart(projectsGiven) {
-  // selectedIndex = -1;
-  // selectedYear = null;
 
   let newSVG = d3.select('svg');
   newSVG.selectAll('path').remove();
@@ -32,7 +30,7 @@ function renderPieChart(projectsGiven) {
   );
   
   let newData = newRolledData.map(([year, count]) => {
-    return { value: count, label: year }; // TODO
+    return { value: count, label: year };
   });
 
   let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
@@ -100,11 +98,9 @@ searchInput.addEventListener('change', (event) => {
       }
     );
     renderProjects(activeProjects, projectsContainer, 'h2');
-    // renderPieChart(activeProjects);
+    renderPieChart(activeProjects);
   }
   else {
-    // query = '';
-    // selectedYear = null;
     activeProjects = projects.slice()
     renderProjects(projects, projectsContainer, 'h2');
     renderPieChart(projects);
