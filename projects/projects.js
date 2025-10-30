@@ -89,16 +89,22 @@ selectedYear = renderPieChart(projects);
 
 let query = '';
 let searchInput = document.querySelector('.searchBar');
-searchInput.addEventListener('input', (event) => {
+searchInput.addEventListener('change', (event) => {
   query = event.target.value;
-  let filteredProjects = projects.filter((project) =>{
-      let values = Object.values(project).join('\n').toLowerCase();
-      let matchesSearch = values.includes(query.toLowerCase())
-      let matchesYear = selectedYear === null || project.year === selectedYear;
-      return matchesSearch && matchesYear;
-    }
-  );
+  if (query.length > 0){
+      let filteredProjects = projects.filter((project) =>{
+        let values = Object.values(project).join('\n').toLowerCase();
+        let matchesSearch = values.includes(query.toLowerCase())
+        let matchesYear = selectedYear === null || project.year === selectedYear;
+        return matchesSearch && matchesYear;
+      }
+    );
 
-  renderProjects(filteredProjects, projectsContainer, 'h2');
-  renderPieChart(filteredProjects);
+    renderProjects(filteredProjects, projectsContainer, 'h2');
+    renderPieChart(filteredProjects);
+  }
+  else {
+    renderProjects(projects, projectsContainer, 'h2');
+    renderPieChart(projects);
+  }
 });
