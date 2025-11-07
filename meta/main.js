@@ -58,23 +58,18 @@ function renderCommitInfo(data, commits) {
   dl.append('dd').text(d3.mean(commits, d=> d.totalLines).toFixed(2));
 
 
-  let avgFrac = d3.mean(commits, d=> d.hourFrac);
-  let hours = Math.floor(avgFrac);
-  let amPm = hours >= 12 ? 'PM' : 'AM';
-  if (hours > 12) hours -= 12;
-  if (hours === 0) hours = 12; // midnight edge case
+  let commonHourOfCommit = d3.mode(commits, d=> Math.floor(d.hourFrac));
+  let amPm = commonHourOfCommit >= 12 ? 'PM' : 'AM';
+  if (commonHourOfCommit > 12) commonHourOfCommit -= 12;
+  if (commonHourOfCommit === 0) commonHourOfCommit = 12; // midnight edge case
   
   dl.append('dt').text('Typical Commit Hour');
-  dl.append('dd').text(`${hours} ${amPm}`);
+  dl.append('dd').text(`${commonHourOfCommit} ${amPm}`);
 
   dl.append('dt').text('Typical Commit Day');
-  let mostFreqDay = d3.rollups(
-    commits,
-    v => v.length,
-    d => d.date.getDay()
-  ).sort((a,b) => d3.descending(a[1], b[1]))[0][0];
+  let commonDayofCommit = d3.mode(commits, d=> d.date.getDay());
   const days = ['Sun','Mon','Tues','Wed','Thurs','Fri','Sat'];
-  const dayName = days[mostFreqDay];
+  const dayName = days[commonDayofCommit];
   dl.append('dd').text(dayName);
 
 }
