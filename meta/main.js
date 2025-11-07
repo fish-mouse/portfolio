@@ -196,7 +196,7 @@ function updateTooltipPosition(event) {
   tooltip.style.top = `${event.clientY}px`;
 }
 
-function V(selection) {
+function renderSelectionCount(selection) {
   const selectedCommits = selection
     ? commits.filter((d) => isCommitSelected(selection, d))
     : [];
@@ -210,12 +210,13 @@ function V(selection) {
 }
 
 
-function brushed(event){
+function brushed(event) {
   const selection = event.selection;
   d3.selectAll('circle').classed('selected', (d) =>
     isCommitSelected(selection, d),
-    renderSelectionCount(selection)
   );
+  renderSelectionCount(selection);
+  renderLanguageBreakdown(selection);
 }
 
 function isCommitSelected(selection, commit) {
@@ -232,6 +233,40 @@ function isCommitSelected(selection, commit) {
 
 function createBrushSelector(svg) {
   svg.call(d3.brush().on('start brush end', brushed));
+}
+
+function renderLanguageBreakdown(selection) {
+  const selectedCommits = selection
+    ? commits.filter((d) => isCommitSelected(selection, d))
+    : [];
+  const container = document.getElementById('language-breakdown');
+
+  if (selectedCommits.length === 0) {
+    container.innerHTML = '';
+    return;
+  }
+  const requiredCommits = selectedCommits.length ? selectedCommits : commits;
+  const lines = requiredCommits.flatMap((d) => d.lines);
+
+  // Use d3.rollup to count lines per language
+  const breakdown = d3.rollup(
+    lines,
+    (v) => v.length,
+    (d) => d.type,
+  );
+
+  // Update DOM with breakdown
+  container.innerHTML = '';
+
+  for (const [language, count] of breakdown) {
+    const proportion = count / lines.length;
+    const formatted = d3.format('.1~%')(proportion);
+
+    container.innerHTML += `
+            <dt>${language}</dt>
+            <dd>${count} lines (${formatted})</dd>
+        `;
+  }
 }
 
 let data = await loadData();
