@@ -16,6 +16,7 @@ let pages = [
   { url: 'https://github.com/fish-mouse', title: 'Profile' },
   { url: 'projects/', title: 'Projects' },
   { url: 'contact/', title: 'Contact' },
+  { url: 'meta/', title: 'Meta' },
   { url: 'resume.html', title: 'Resume' }
 ];
 
