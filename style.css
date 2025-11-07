@@ -166,8 +166,7 @@ dt {
 
 dd {
   text-align: left;
-  font-weight: bold;
-  font-size: 200%;
+  font-size: 150%;
   grid-row: 2;
   margin-left: 0
 }
@@ -246,6 +245,67 @@ path {
   cursor: pointer;
 }
 
-/* .stats dl, dt, dd {
-  
-} */
+.gridlines {
+  stroke: #D3D3D3;
+  /* stroke-dasharray: 2 2; */
+  stroke-width: 0.15;
+}
+
+dl.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+
+dl.info dt {
+  font-size: inherit;
+  grid-column: 1;
+  grid-row: auto;
+  font-weight: bold;
+  opacity: 0.7;
+  margin: 0;
+}
+
+dl.info dd {
+  font-size: inherit;
+  grid-column: 2;
+  margin: 0;
+  grid-row: auto;
+}
+
+
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 0.5em;
+  backdrop-filter: blur(5px);
+  padding: 0.5em 1em;
+}
+
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+dl.info {
+  /* ... other styles ... */
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+circle.selected {
+  fill: #ff6b6b;
+}
