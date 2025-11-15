@@ -110,8 +110,8 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
     const article = document.createElement('article');
     project
     article.innerHTML = `
-      <h3>${project.title}</h3>
-      <img src="${project.image}" alt="${project.title}">
+      <h3><a href="${project.url}" target="_blank" rel="noopener noreferrer">${project.title}</a></h3>
+      <img src="${project.image}" alt="${project.title}" style="max-width: auto; height: 150px;">
       <div>
         <p>${project.description}</p>
         <p>c. ${project.year}</p>
