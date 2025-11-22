@@ -11,7 +11,18 @@
 <body>
     <h1>Meta</h1>
     <!-- <p>This page includes stats about the code of this website. </p> -->
+    
+    <div>
+      <label>Show commits up to:
+        <input type="range" min="0" max="100" value="0" id="commit-progress">
+        <time id="slider-time">9/30/2025, 11:11:50 AM</time>
+      </label>
+    </div>
+
+    <br><br>
+    
     <h2>Summary Statistics</h2>
+
     <div id="stats"></div>
     <br><br>
     <h2>Commits by time of day</h2>
@@ -39,7 +50,6 @@
     <p id="selection-count">No commits selected</p>
 
     <dl id="language-breakdown" class="stats"></dl>
-
 
 </body>
 </html>
