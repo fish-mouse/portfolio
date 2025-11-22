@@ -1,5 +1,7 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+import scrollama from 'https://cdn.jsdelivr.net/npm/scrollama@3.2.0/+esm';
 let xScale, yScale;
+let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
 async function loadData(){
     const data = await d3.csv('loc.csv', (row) => ({
@@ -125,6 +127,13 @@ function renderScatterPlot(data, commits) {
   .attr('class', 'y-axis') // just for consistency
   .call(yAxis);
 
+  const brush = d3.brush()
+  .on('start brush end', brushed);
+
+  svg.append('g')
+    .attr('class', 'brush')
+    .call(brush);
+
   const dots = svg.append('g').attr('class', 'dots');
   
   dots
@@ -141,7 +150,7 @@ function renderScatterPlot(data, commits) {
     renderTooltipContent(commit);
     updateTooltipVisibility(true);
     updateTooltipPosition(event);
-    createBrushSelector(svg);
+    // createBrushSelector(svg);
 
     svg.selectAll('.dots, .overlay ~ *').raise();
   })
@@ -272,23 +281,33 @@ function updateFileDisplay(filteredCommits){
   .groups(lines, (d) => d.file)
   .map(([name, lines]) => {
     return { name, lines };
-  });
+  })
+  .sort((a, b) => b.lines.length - a.lines.length);
 
   let filesContainer = d3
   .select('#files')
   .selectAll('div')
   .data(files, (d) => d.name)
   .join(
-    // This code only runs when the div is initially rendered
     (enter) =>
       enter.append('div').call((div) => {
-        div.append('dt').append('code');
+        div.append('dt');
         div.append('dd');
       }),
-  );
+  )
+  ;
 
-  filesContainer.select('dt > code').text((d) => d.name);
-  filesContainer.select('dd').text((d) => `${d.lines.length} lines`);
+  filesContainer.select('dt')
+    .html((d) => `<code>${d.name}</code><small>${d.lines.length} lines</small>`);
+  // filesContainer.select('dd')
+  //   .text((d) => ``);  Removed cuz otw would just repeat dt
+
+  filesContainer
+  .select('dd')
+  .selectAll('div')
+  .data((d) => d.lines)
+  .join('div')
+  .attr('class', 'loc').attr('style', (d) => `--color: ${colors(d.type)}`);
 }
 
 function onTimeSliderChange() {
@@ -357,6 +376,47 @@ function updateScatterPlot(data, commits) {
     });
 }
 
+function generateCommitStory(){
+    d3.select('#scatter-story')
+    .selectAll('.step')
+    .data(commits)
+    .join('div')
+    .attr('class', 'step')
+    .html(
+      (d, i) => `
+      On ${d.datetime.toLocaleString('en', {
+        dateStyle: 'full',
+        timeStyle: 'short',
+      })},
+      I made <a href="${d.url}" target="_blank">${
+        i > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'
+      }</a>.
+      I edited ${d.totalLines} lines across ${
+        d3.rollups(
+          d.lines,
+          (D) => D.length,
+          (d) => d.file,
+        ).length
+      } files.
+      Then I looked over all I had made, and I saw that it was very good.
+    `,
+  );
+}
+
+function initializeScrollytelling() {
+  function onStepEnter(response) {
+    console.log(response.element.__data__.datetime);
+  }
+
+  const scroller = scrollama();
+  scroller
+    .setup({
+      container: '#scrolly-1',
+      step: '#scrolly-1 .step',
+    })
+    .onStepEnter(onStepEnter);
+}
+
 let data = await loadData();
 let commits = processCommits(data);
 console.log('Commits:', commits);
@@ -376,8 +436,8 @@ let filteredCommits = commits;
 const timeSlider = document.getElementById('commit-progress');
 timeSlider.addEventListener('input', onTimeSliderChange);
 
-
-
-
 renderCommitInfo(data, commits);
 renderScatterPlot(data, commits);
+updateFileDisplay(filteredCommits);
+generateCommitStory();
+initializeScrollytelling();

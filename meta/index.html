@@ -11,58 +11,50 @@
 <body>
     <h1>Meta</h1>
     <!-- <p>This page includes stats about the code of this website. </p> -->
-    
-    <div>
-      <label>Show commits up to:
-        <input type="range" min="0" max="100" value="0" id="commit-progress">
-        <time id="slider-time">9/30/2025, 11:11:50 AM</time>
-      </label>
-    </div>
-
-    <br><br>
-    
-    <dl id="files">
-      <!-- we want the following structure for each file:
-      <div>
-        <dt>
-          <code>{file.name}</code>
-        </dt>
-        <dd>{file.lines.length} lines</dd>
-      </div>
-      -->
-    </dl>
-
-    <br><br>
 
     <h2>Summary Statistics</h2>
 
     <div id="stats"></div>
     <br><br>
     <h2>Commits by time of day</h2>
-    <div id="chart"></div>
-    <dl id="commit-tooltip" class="info tooltip" hidden>
 
-      <dt>Commit</dt>
-      <dd>
-        <a href="" id="commit-link" target="_blank"></a>
-      </dd>
+    <div>
+      <label>Show commits up to:
+        <input type="range" min="0" max="100" value="0" id="commit-progress">
+        <time id="slider-time">9/30/2025, 11:11:50 AM</time>
+      </label>
+    </div>
+    <div id="scrolly-1">
+      <div id="scatter-story"></div>
+      <div id="scatter-plot">
+        <div id="chart"></div>
+        <dl id="commit-tooltip" class="info tooltip" hidden>
 
-      <dt>Date</dt>
-      <dd id="commit-date"></dd>
+          <dt>Commit</dt>
+          <dd>
+            <a href="" id="commit-link" target="_blank"></a>
+          </dd>
 
-      <dt>Time</dt>
-      <dd id="commit-time"></dd>
+          <dt>Date</dt>
+          <dd id="commit-date"></dd>
 
-      <dt>Author</dt>
-      <dd id="commit-author"></dd>
+          <dt>Time</dt>
+          <dd id="commit-time"></dd>
 
-      <dt>Lines edited</dt>
-      <dd id="commit-lines"></dd>
-    </dl>
+          <dt>Author</dt>
+          <dd id="commit-author"></dd>
 
-    <p id="selection-count">No commits selected</p>
+          <dt>Lines edited</dt>
+          <dd id="commit-lines"></dd>
+        </dl>
 
-    <dl id="language-breakdown" class="stats"></dl>
+        <p id="selection-count">No commits selected</p>
 
+        <dl id="language-breakdown" class="stats"></dl>
+      </div>
+    </div>
+
+  
+  <dl id="files"></dl>
 </body>
 </html>
