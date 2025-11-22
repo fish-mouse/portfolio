@@ -41,7 +41,7 @@ function processCommits(data) {
       });
 
       return ret;
-    });
+    }).sort((a, b) => a.datetime - b.datetime);
 }
 
 function renderCommitInfo(data, commits) {
@@ -406,6 +406,7 @@ function generateCommitStory(){
 function initializeScrollytelling() {
   function onStepEnter(response) {
     console.log(response.element.__data__.datetime);
+    updateScatterPlot(data, commits.filter(d=> d.datetime >= response.element.__data__.datetime));
   }
 
   const scroller = scrollama();
